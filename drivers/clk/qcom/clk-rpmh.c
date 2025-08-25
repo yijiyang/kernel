@@ -390,6 +390,11 @@ DEFINE_CLK_RPMH_VRM(clk7, _a4, "clka7", 4);
 
 DEFINE_CLK_RPMH_VRM(div_clk1, _div2, "divclka1", 2);
 
+DEFINE_CLK_RPMH_VRM(clk3, _a, "C3A_E0", 1);
+DEFINE_CLK_RPMH_VRM(clk4, _a, "C4A_E0", 1);
+DEFINE_CLK_RPMH_VRM(clk5, _a, "C5A_E0", 1);
+DEFINE_CLK_RPMH_VRM(clk8, _a, "C8A_E0", 1);
+
 
 DEFINE_CLK_RPMH_VRM(c1a_e0, _a, "C1A_E0", 1);
 DEFINE_CLK_RPMH_VRM(c2a_e0, _a, "C2A_E0", 1);
@@ -918,32 +923,20 @@ static const struct clk_rpmh_desc clk_rpmh_kaanapali = {
 	.num_clks = ARRAY_SIZE(kaanapali_rpmh_clocks),
 };
 
-static struct clk_hw *kaanapali_rpmh_clocks[] = {
+static struct clk_hw *glymur_rpmh_clocks[] = {
 	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
 	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
-	[RPMH_DIV_CLK1]		= &clk_rpmh_c11a_e0_a4.hw,
-	[RPMH_LN_BB_CLK1]	= &clk_rpmh_c6a_e0_a2.hw,
-	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_c6a_e0_a2_ao.hw,
-	[RPMH_LN_BB_CLK2]	= &clk_rpmh_c7a_e0_a2.hw,
-	[RPMH_LN_BB_CLK2_A]	= &clk_rpmh_c7a_e0_a2_ao.hw,
-	[RPMH_LN_BB_CLK3]	= &clk_rpmh_c8a_e0_a2.hw,
-	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_c8a_e0_a2_ao.hw,
-	[RPMH_RF_CLK1]		= &clk_rpmh_c1a_e0_a.hw,
-	[RPMH_RF_CLK1_A]	= &clk_rpmh_c1a_e0_a_ao.hw,
-	[RPMH_RF_CLK2]		= &clk_rpmh_c2a_e0_a.hw,
-	[RPMH_RF_CLK2_A]	= &clk_rpmh_c2a_e0_a_ao.hw,
-	[RPMH_RF_CLK3]		= &clk_rpmh_c3a_e0_a2.hw,
-	[RPMH_RF_CLK3_A]	= &clk_rpmh_c3a_e0_a2_ao.hw,
-	[RPMH_RF_CLK4]		= &clk_rpmh_c4a_e0_a2.hw,
-	[RPMH_RF_CLK4]		= &clk_rpmh_c4a_e0_a2.hw,
-	[RPMH_RF_CLK5_A]	= &clk_rpmh_c5a_e0_a2_ao.hw,
-	[RPMH_RF_CLK5_A]	= &clk_rpmh_c5a_e0_a2_ao.hw,
-	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
+	[RPMH_RF_CLK3]		= &clk_rpmh_clk3_a.hw,
+	[RPMH_RF_CLK3_A]	= &clk_rpmh_clk3_a_ao.hw,
+	[RPMH_RF_CLK4]		= &clk_rpmh_clk4_a.hw,
+	[RPMH_RF_CLK4_A]	= &clk_rpmh_clk4_a_ao.hw,
+	[RPMH_RF_CLK5]		= &clk_rpmh_clk5_a.hw,
+	[RPMH_RF_CLK5_A]	= &clk_rpmh_clk5_a_ao.hw,
 };
 
-static const struct clk_rpmh_desc clk_rpmh_kaanapali = {
-	.clks = kaanapali_rpmh_clocks,
-	.num_clks = ARRAY_SIZE(kaanapali_rpmh_clocks),
+static const struct clk_rpmh_desc clk_rpmh_glymur = {
+	.clks = glymur_rpmh_clocks,
+	.num_clks = ARRAY_SIZE(glymur_rpmh_clocks),
 };
 
 static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
@@ -1035,6 +1028,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
 }
 
 static const struct of_device_id clk_rpmh_match_table[] = {
+	{ .compatible = "qcom,glymur-rpmh-clk", .data = &clk_rpmh_glymur},
 	{ .compatible = "qcom,kaanapali-rpmh-clk", .data = &clk_rpmh_kaanapali},
 	{ .compatible = "qcom,milos-rpmh-clk", .data = &clk_rpmh_milos},
 	{ .compatible = "qcom,qcs615-rpmh-clk", .data = &clk_rpmh_qcs615},
