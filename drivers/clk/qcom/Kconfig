@@ -19,6 +19,17 @@ menuconfig COMMON_CLK_QCOM
 
 if COMMON_CLK_QCOM
 
+config CLK_KAANAPALI_DISPCC
+	tristate "KAANAPALI Display Clock Controller"
+	depends on ARM64 || COMPILE_TEST
+	select CLK_KAANAPALI_GCC
+	help
+	  Support for the display clock controller on Qualcomm Technologies, Inc
+	  Kaanapali devices.
+	  Say Y if you want to support display devices and functionality such as
+	  splash screen.
+
+
 config CLK_KAANAPALI_GCC
 	tristate "KAANAPALI Global Clock Controller"
 	depends on ARM64 || COMPILE_TEST
