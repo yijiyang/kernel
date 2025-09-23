@@ -390,6 +390,7 @@ DEFINE_CLK_RPMH_VRM(clk7, _a4, "clka7", 4);
 
 DEFINE_CLK_RPMH_VRM(div_clk1, _div2, "divclka1", 2);
 
+
 DEFINE_CLK_RPMH_VRM(c1a_e0, _a, "C1A_E0", 1);
 DEFINE_CLK_RPMH_VRM(c2a_e0, _a, "C2A_E0", 1);
 DEFINE_CLK_RPMH_VRM(c3a_e0, _a2, "C3A_E0", 2);
@@ -887,6 +888,34 @@ static const struct clk_rpmh_desc clk_rpmh_sm8750 = {
 	.clks = sm8750_rpmh_clocks,
 	.num_clks = ARRAY_SIZE(sm8750_rpmh_clocks),
 	.clka_optional = true,
+};
+
+static struct clk_hw *kaanapali_rpmh_clocks[] = {
+	[RPMH_CXO_CLK]		= &clk_rpmh_bi_tcxo_div2.hw,
+	[RPMH_CXO_CLK_A]	= &clk_rpmh_bi_tcxo_div2_ao.hw,
+	[RPMH_DIV_CLK1]		= &clk_rpmh_c11a_e0_a4.hw,
+	[RPMH_LN_BB_CLK1]	= &clk_rpmh_c6a_e0_a2.hw,
+	[RPMH_LN_BB_CLK1_A]	= &clk_rpmh_c6a_e0_a2_ao.hw,
+	[RPMH_LN_BB_CLK2]	= &clk_rpmh_c7a_e0_a2.hw,
+	[RPMH_LN_BB_CLK2_A]	= &clk_rpmh_c7a_e0_a2_ao.hw,
+	[RPMH_LN_BB_CLK3]	= &clk_rpmh_c8a_e0_a2.hw,
+	[RPMH_LN_BB_CLK3_A]	= &clk_rpmh_c8a_e0_a2_ao.hw,
+	[RPMH_RF_CLK1]		= &clk_rpmh_c1a_e0_a.hw,
+	[RPMH_RF_CLK1_A]	= &clk_rpmh_c1a_e0_a_ao.hw,
+	[RPMH_RF_CLK2]		= &clk_rpmh_c2a_e0_a.hw,
+	[RPMH_RF_CLK2_A]	= &clk_rpmh_c2a_e0_a_ao.hw,
+	[RPMH_RF_CLK3]		= &clk_rpmh_c3a_e0_a2.hw,
+	[RPMH_RF_CLK3_A]	= &clk_rpmh_c3a_e0_a2_ao.hw,
+	[RPMH_RF_CLK4]		= &clk_rpmh_c4a_e0_a2.hw,
+	[RPMH_RF_CLK4]		= &clk_rpmh_c4a_e0_a2.hw,
+	[RPMH_RF_CLK5_A]	= &clk_rpmh_c5a_e0_a2_ao.hw,
+	[RPMH_RF_CLK5_A]	= &clk_rpmh_c5a_e0_a2_ao.hw,
+	[RPMH_IPA_CLK]		= &clk_rpmh_ipa.hw,
+};
+
+static const struct clk_rpmh_desc clk_rpmh_kaanapali = {
+	.clks = kaanapali_rpmh_clocks,
+	.num_clks = ARRAY_SIZE(kaanapali_rpmh_clocks),
 };
 
 static struct clk_hw *kaanapali_rpmh_clocks[] = {
